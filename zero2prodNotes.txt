@@ -1,0 +1,13 @@
+Dev Loop
+========
+-make change(s)
+-compile
+-test
+-run
+
+Faster Linker (if needed)
+=========================
+# - Ubuntu, `sudo apt-get install lld clang`
+# - Arch, `sudo pacman -S lld clang`
+[target.x86_64-unknown-linux-gnu]
+rustflags = ["-C", "linker=clang", "-C", "link-arg=-fuse-ld=lld"]
