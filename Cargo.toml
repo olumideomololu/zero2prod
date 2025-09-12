@@ -12,3 +12,4 @@ name = "zero2prod"
 
 [dependencies]
 actix-web = "4.11.0"
+reqwest = "0.12.23"
