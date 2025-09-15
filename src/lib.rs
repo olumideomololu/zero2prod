@@ -1,4 +1,4 @@
-use std::io;
+use std::{io, net::TcpListener};
 
 use actix_web::{dev::Server, web, App, HttpResponse, HttpServer};
 
@@ -6,12 +6,12 @@ async fn health_check() -> HttpResponse{
     HttpResponse::Ok().finish()
 }
 
-pub fn run() -> Result<Server, io::Error> {
+pub fn run(listner: TcpListener) -> Result<Server, io::Error> {
     let server = HttpServer::new(|| {
         App::new()
             .route("/health_check", web::get().to(health_check))
     })
-    .bind("127.0.0.1:8000")?
+    .listen(listner)?
     .run();
     Ok(server)
 }
